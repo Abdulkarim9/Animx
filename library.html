@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimX - Animation Library</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Include CodeMirror for code editor -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/javascript/javascript.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo-container">
+                <a href="index.html" class="logo-link">
+                    <h1><span class="highlight">Anim</span>X</h1>
+                    <p class="tagline">Beautiful animations at your fingertips</p>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="library.html" class="active">Library</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+            <div class="header-controls">
+                <div class="search-container">
+                    <input type="text" id="search" placeholder="Search animations...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- New Interactive Hero Section -->
+        <section class="library-hero">
+            <div class="hero-particles" id="hero-particles"></div>
+            <div class="hero-spotlight"></div>
+            <div class="library-hero-content">
+                <h1 class="hero-headline"><span class="gradient-text">Animation Library</span></h1>
+                <p class="hero-subheadline">Discover professional animations for your website</p>
+                
+                <div class="hero-showcase">
+                    <div class="showcase-item" id="showcase-3d">
+                        <div class="showcase-icon">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <span class="showcase-label">3D</span>
+                    </div>
+                    <div class="showcase-item" id="showcase-hover">
+                        <div class="showcase-icon">
+                            <i class="fas fa-hand-pointer"></i>
+                        </div>
+                        <span class="showcase-label">Hover</span>
+                    </div>
+                    <div class="showcase-item" id="showcase-text">
+                        <div class="showcase-icon">
+                            <i class="fas fa-font"></i>
+                        </div>
+                        <span class="showcase-label">Text</span>
+                    </div>
+                    <div class="showcase-item" id="showcase-buttons">
+                        <div class="showcase-icon">
+                            <i class="fas fa-square"></i>
+                        </div>
+                        <span class="showcase-label">Buttons</span>
+                    </div>
+                    <div class="showcase-item" id="showcase-loaders">
+                        <div class="showcase-icon">
+                            <i class="fas fa-spinner"></i>
+                        </div>
+                        <span class="showcase-label">Loaders</span>
+                    </div>
+                </div>
+                
+                <div class="hero-search">
+                    <div class="hero-search-container">
+                        <input type="text" placeholder="Search for animations..." class="hero-search-input">
+                        <button class="hero-search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Animations</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">6</span>
+                        <span class="stat-label">Categories</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Free</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="category-nav">
+            <button class="category-btn active" data-category="all">All</button>
+            <button class="category-btn" data-category="3d">3D</button>
+            <button class="category-btn" data-category="hover">Hover</button>
+            <button class="category-btn" data-category="buttons">Buttons</button>
+            <button class="category-btn" data-category="text">Text</button>
+            <button class="category-btn" data-category="loaders">Loaders</button>
+            <button class="category-btn" data-category="hero-backgrounds">Hero Backgrounds</button>
+        </div>
+
+        <main>
+            <div class="animations-grid" id="animations-grid">
+                <!-- Animation cards will be dynamically inserted here -->
+            </div>
+        </main>
+
+        <div class="modal" id="code-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-title">Animation Code</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="preview-container" id="modal-preview">
+                        <!-- Animation preview will be inserted here -->
+                    </div>
+                    <div class="code-tabs">
+                        <button class="tab-btn active" data-tab="html">HTML</button>
+                        <button class="tab-btn" data-tab="css">CSS</button>
+                        <button class="tab-btn" data-tab="js">JavaScript</button>
+                    </div>
+                    <div class="code-editor-container">
+                        <div class="code-editor" id="code-editor"></div>
+                        <div class="editor-controls">
+                            <button id="copy-code" class="btn">
+                                <i class="fas fa-copy"></i> Copy Code
+                            </button>
+                            <button id="apply-code" class="btn primary">
+                                <i class="fas fa-play"></i> Apply Changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" id="share-btn">
+                        <i class="fas fa-share-alt"></i> Share
+                    </button>
+                    <button class="btn" id="favorite-btn">
+                        <i class="far fa-heart"></i> Favorite
+                    </button>
+                    <button class="btn" id="export-codepen">
+                        <i class="fab fa-codepen"></i> Export to CodePen
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2025 AnimX. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Github</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Mark the current page as active in the navigation
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                if (link.getAttribute('href') === location.pathname.split('/').pop()) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Library Hero Particle Effect
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create particles
+            const particlesContainer = document.getElementById('hero-particles');
+            const numParticles = window.innerWidth < 768 ? 30 : 60;
+            
+            for (let i = 0; i < numParticles; i++) {
+                createParticle();
+            }
+            
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 2px and 8px
+                const size = Math.random() * 6 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                
+                // Random opacity
+                particle.style.opacity = Math.random() * 0.4 + 0.1;
+                
+                // Random animation duration
+                const duration = Math.random() * 20 + 10;
+                particle.style.animation = `float ${duration}s infinite alternate ease-in-out`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                // Set random transform values
+                const translateX = Math.random() * 40 - 20;
+                const translateY = Math.random() * 40 - 20;
+                particle.style.setProperty('--float-x', `${translateX}px`);
+                particle.style.setProperty('--float-y', `${translateY}px`);
+                
+                particlesContainer.appendChild(particle);
+            }
+            
+            // Interactive hover effect for showcase items
+            const showcaseItems = document.querySelectorAll('.showcase-item');
+            
+            showcaseItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    // Add pulsing effect
+                    item.style.animation = 'pulse 1.5s infinite alternate ease-in-out';
+                });
+                
+                item.addEventListener('mouseleave', () => {
+                    // Remove pulsing effect
+                    item.style.animation = '';
+                });
+                
+                // Handle clicks on showcase items - filter by category
+                item.addEventListener('click', () => {
+                    const category = item.id.replace('showcase-', '');
+                    const categoryButton = document.querySelector(`.category-btn[data-category="${category}"]`);
+                    
+                    if (categoryButton) {
+                        // Simulate click on the corresponding category button
+                        categoryButton.click();
+                        
+                        // Scroll to the categories section
+                        window.scrollTo({
+                            top: document.querySelector('.category-nav').offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Connect hero search with main search
+            const heroSearchInput = document.querySelector('.hero-search-input');
+            const mainSearchInput = document.getElementById('search');
+            const heroSearchButton = document.querySelector('.hero-search-button');
+            
+            heroSearchButton.addEventListener('click', () => {
+                if (heroSearchInput.value.trim() !== '') {
+                    // Transfer search term to main search
+                    mainSearchInput.value = heroSearchInput.value;
+                    
+                    // Trigger search event
+                    mainSearchInput.dispatchEvent(new Event('input'));
+                    
+                    // Scroll to results
+                    window.scrollTo({
+                        top: document.querySelector('main').offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+            
+            heroSearchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    heroSearchButton.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

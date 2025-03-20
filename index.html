@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimX - Animation Showcase</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Include CodeMirror for code editor -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/javascript/javascript.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo-container">
+                <a href="index.html" class="logo-link">
+                    <h1><span class="highlight">Anim</span>X</h1>
+                    <p class="tagline">Beautiful animations at your fingertips</p>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="library.html">Library</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+            <div class="header-controls">
+                <div class="search-container">
+                    <input type="text" id="search" placeholder="Search animations...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Hero Section with 3D Interactive Elements -->
+        <section class="home-hero">
+            <!-- 3D Perspective Grid Background -->
+            <div class="perspective-grid" id="perspective-grid"></div>
+            
+            <!-- Interactive Mouse Follow Effect -->
+            <div class="mouse-follow-glow" id="mouse-glow"></div>
+            
+            <!-- Animated Showcase Elements -->
+            <div class="animated-showcase">
+                <div class="showcase-element text-element">
+                    <div class="animated-text">Welcome to AnimX</div>
+                </div>
+                <div class="showcase-element button-element">
+                    <button class="demo-button">Hover Me</button>
+                </div>
+                <div class="showcase-element loader-element">
+                    <div class="demo-loader"></div>
+                </div>
+                <div class="showcase-element card-element">
+                    <div class="demo-card">
+                        <div class="card-face front">3D</div>
+                        <div class="card-face back">Effect</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content Area -->
+            <div class="home-hero-content">
+                <h1 class="home-hero-title">
+                    <span class="reveal-text">Bring Your Websites to</span>
+                    <span class="dynamic-text">Life</span>
+                    <span class="reveal-text">With <span class="gradient-highlight">AnimX</span></span>
+                </h1>
+                
+                <p class="home-hero-description">Discover, customize and implement professional animations with just a few clicks. No complex coding required.</p>
+                
+                <div class="home-hero-actions">
+                    <a href="#featured-animations" class="btn primary cta-button">
+                        <span class="btn-text">Explore Animations</span>
+                        <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="library.html" class="btn secondary browse-button">
+                        <span class="btn-text">Browse Library</span>
+                        <span class="btn-icon"><i class="fas fa-th"></i></span>
+                    </a>
+                </div>
+                
+                <div class="floating-badges">
+                    <div class="badge" data-depth="0.2">
+                        <i class="fas fa-code"></i>
+                        <span>Copy & Paste</span>
+                    </div>
+                    <div class="badge" data-depth="0.4">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Responsive</span>
+                    </div>
+                    <div class="badge" data-depth="0.3">
+                        <i class="fas fa-bolt"></i>
+                        <span>Performant</span>
+                    </div>
+                    <div class="badge" data-depth="0.5">
+                        <i class="fas fa-paint-brush"></i>
+                        <span>Customizable</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title">About <span class="highlight">AnimX</span></h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>AnimX is a curated collection of high-quality, ready-to-use web animations designed to help developers and designers enhance their projects with minimal effort.</p>
+                        <p>Our platform makes it easy to:</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i> Preview animations in real-time</li>
+                            <li><i class="fas fa-check-circle"></i> Copy and paste code directly into your projects</li>
+                            <li><i class="fas fa-check-circle"></i> Customize animations to match your design</li>
+                            <li><i class="fas fa-check-circle"></i> Export to CodePen for further development</li>
+                        </ul>
+                        <p>Whether you're building a portfolio, e-commerce site, or web application, our animations will help your projects stand out and engage users.</p>
+                    </div>
+                    <div class="about-image">
+                        <div class="image-container">
+                            <div class="floating-card card1">
+                                <div class="card-icon"><i class="fas fa-code"></i></div>
+                                <div class="card-text">Copy & Paste</div>
+                            </div>
+                            <div class="floating-card card2">
+                                <div class="card-icon"><i class="fas fa-pencil-alt"></i></div>
+                                <div class="card-text">Customize</div>
+                            </div>
+                            <div class="floating-card card3">
+                                <div class="card-icon"><i class="fas fa-rocket"></i></div>
+                                <div class="card-text">Launch</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Animations Section -->
+        <section id="featured-animations" class="featured-section">
+            <div class="container">
+                <h2 class="section-title">Featured <span class="highlight">Animations</span></h2>
+                <p class="featured-description">Check out some of our most popular animations. Create amazing user experiences with just a few lines of code.</p>
+                
+                <nav class="category-nav">
+                    <button class="category-btn active" data-category="all">All</button>
+                    <button class="category-btn" data-category="hover">Hover Effects</button>
+                    <button class="category-btn" data-category="buttons">Buttons</button>
+                    <button class="category-btn" data-category="loaders">Loaders</button>
+                    <button class="category-btn" data-category="text">Text Effects</button>
+                    <button class="category-btn" data-category="3d">3D</button>
+                    <button class="category-btn" data-category="hero-backgrounds">Hero Backgrounds</button>
+                </nav>
+                
+                <div class="animations-grid" id="featured-grid">
+                    <!-- Featured animation cards will be dynamically inserted here -->
+                </div>
+                
+                <div class="view-more-container">
+                    <a href="library.html" class="btn primary btn-large view-more-btn">
+                        <i class="fas fa-plus"></i> View More Animations
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <div class="modal" id="code-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">Animation Title</h2>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="preview-container" id="modal-preview">
+                        <!-- Preview will be dynamically inserted here -->
+                    </div>
+                    <div class="code-tabs">
+                        <button class="tab-btn active" data-tab="html">HTML</button>
+                        <button class="tab-btn" data-tab="css">CSS</button>
+                        <button class="tab-btn" data-tab="js">JavaScript</button>
+                    </div>
+                    <div class="code-editor-container">
+                        <div class="code-editor" id="code-editor"></div>
+                        <div class="editor-controls">
+                            <button id="copy-code" class="btn">
+                                <i class="fas fa-copy"></i> Copy Code
+                            </button>
+                            <button id="apply-code" class="btn primary">
+                                <i class="fas fa-play"></i> Apply Changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" id="share-btn">
+                        <i class="fas fa-share-alt"></i> Share
+                    </button>
+                    <button class="btn" id="favorite-btn">
+                        <i class="far fa-heart"></i> Favorite
+                    </button>
+                    <button class="btn" id="export-codepen">
+                        <i class="fab fa-codepen"></i> Export to CodePen
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2025 AnimX. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Github</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Mark the current page as active in the navigation
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                if (link.getAttribute('href') === location.pathname.split('/').pop() || 
+                   (link.getAttribute('href') === 'index.html' && (location.pathname === '/' || location.pathname.endsWith('/')))) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Home Hero Interactive Elements
+            if (document.querySelector('.home-hero')) {
+                // Mouse follow glow effect
+                const mouseGlow = document.getElementById('mouse-glow');
+                const hero = document.querySelector('.home-hero');
+                
+                hero.addEventListener('mousemove', (e) => {
+                    const heroRect = hero.getBoundingClientRect();
+                    const x = e.clientX - heroRect.left;
+                    const y = e.clientY - heroRect.top;
+                    
+                    mouseGlow.style.opacity = '1';
+                    mouseGlow.style.transform = `translate(${x - 200}px, ${y - 200}px)`;
+                });
+                
+                hero.addEventListener('mouseleave', () => {
+                    mouseGlow.style.opacity = '0';
+                });
+                
+                // Create 3D perspective grid
+                const perspectiveGrid = document.getElementById('perspective-grid');
+                
+                // Parallax effect for floating badges
+                const badges = document.querySelectorAll('.badge');
+                
+                hero.addEventListener('mousemove', (e) => {
+                    const heroRect = hero.getBoundingClientRect();
+                    const centerX = heroRect.width / 2;
+                    const centerY = heroRect.height / 2;
+                    
+                    const mouseX = e.clientX - heroRect.left;
+                    const mouseY = e.clientY - heroRect.top;
+                    
+                    const moveX = (mouseX - centerX) / 25;
+                    const moveY = (mouseY - centerY) / 25;
+                    
+                    badges.forEach(badge => {
+                        const depth = parseFloat(badge.getAttribute('data-depth'));
+                        badge.style.transform = `translate(${moveX * depth}px, ${moveY * depth}px)`;
+                    });
+                });
+                
+                hero.addEventListener('mouseleave', () => {
+                    badges.forEach(badge => {
+                        badge.style.transform = 'translate(0, 0)';
+                    });
+                });
+                
+                // Button hover effect
+                const demoButton = document.querySelector('.demo-button');
+                
+                demoButton.addEventListener('mouseenter', () => {
+                    demoButton.style.transform = 'translateY(-5px)';
+                });
+                
+                demoButton.addEventListener('mouseleave', () => {
+                    demoButton.style.transform = 'translateY(0)';
+                });
+                
+                // Showcase elements parallax effect
+                const showcaseElements = document.querySelectorAll('.showcase-element');
+                
+                hero.addEventListener('mousemove', (e) => {
+                    const heroRect = hero.getBoundingClientRect();
+                    const centerX = heroRect.width / 2;
+                    const centerY = heroRect.height / 2;
+                    
+                    const mouseX = e.clientX - heroRect.left;
+                    const mouseY = e.clientY - heroRect.top;
+                    
+                    const moveX = (mouseX - centerX) / 15;
+                    const moveY = (mouseY - centerY) / 15;
+                    
+                    showcaseElements.forEach(element => {
+                        const baseTransform = element.style.transform.split('translateZ')[0];
+                        const depth = parseInt(element.style.transform.match(/translateZ\((\d+)px\)/)?.[1] || 50);
+                        const depthFactor = depth / 50;
+                        
+                        element.style.transform = `translate(${moveX * depthFactor}px, ${moveY * depthFactor}px) translateZ(${depth}px)`;
+                    });
+                });
+                
+                hero.addEventListener('mouseleave', () => {
+                    showcaseElements.forEach(element => {
+                        const depth = parseInt(element.style.transform.match(/translateZ\((\d+)px\)/)?.[1] || 50);
+                        element.style.transform = `translateZ(${depth}px)`;
+                    });
+                });
+                
+                // Initialize showcase element depths
+                showcaseElements.forEach(element => {
+                    const classNames = element.className.split(' ');
+                    let depth = 50;
+                    
+                    if (classNames.includes('text-element')) depth = 50;
+                    if (classNames.includes('button-element')) depth = 30;
+                    if (classNames.includes('loader-element')) depth = 40;
+                    if (classNames.includes('card-element')) depth = 60;
+                    
+                    element.style.transform = `translateZ(${depth}px)`;
+                });
+                
+                // Mobile optimization - disable heavy effects
+                function checkMobile() {
+                    if (window.innerWidth < 768) {
+                        perspectiveGrid.style.opacity = '0.2';
+                    } else {
+                        perspectiveGrid.style.opacity = '0.4';
+                    }
+                }
+                
+                checkMobile();
+                window.addEventListener('resize', checkMobile);
+            }
+        });
+    </script>
+</body>
+</html> 
