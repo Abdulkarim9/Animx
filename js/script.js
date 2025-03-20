@@ -6,11 +6,14 @@ function loadAnimations() {
     // Helper function to load animations by category
     async function loadAnimationsByCategory(category) {
         try {
+            console.log(`Attempting to load animations from: animations/${category}/index.json`);
             const response = await fetch(`animations/${category}/index.json`);
-            if (response.ok) {
-                const animations = await response.json();
-                animationsData.push(...animations);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
             }
+            const animations = await response.json();
+            console.log(`Successfully loaded ${animations.length} animations from ${category}`);
+            animationsData.push(...animations);
         } catch (error) {
             console.error(`Error loading ${category} animations:`, error);
         }
@@ -30,13 +33,24 @@ function loadAnimations() {
 // Initialize animations after loading
 document.addEventListener('DOMContentLoaded', async () => {
     // Load animations first
-    await loadAnimations();
+    try {
+        await loadAnimations();
+        console.log(`Total animations loaded: ${animationsData.length}`);
+    } catch (error) {
+        console.error("Error in loadAnimations:", error);
+    }
     
     // Check if we're on the homepage or library page
     const isHomePage = window.location.pathname.endsWith('index.html') || 
                        window.location.pathname === '/' || 
                        window.location.pathname.endsWith('/');
-    const isLibraryPage = window.location.pathname.endsWith('library.html');
+    const isLibraryPage = window.location.pathname.includes('library.html') || 
+                          window.location.pathname.endsWith('/library') ||
+                          window.location.pathname.endsWith('/library/');
+    
+    console.log("Current path:", window.location.pathname);
+    console.log("isHomePage:", isHomePage);
+    console.log("isLibraryPage:", isLibraryPage);
     
     if (isHomePage) {
         // Initialize featured animations on homepage
@@ -235,6 +249,20 @@ function initSmoothScroll() {
 function initAnimationsGrid() {
     const animationsGrid = document.getElementById('animations-grid');
     
+    // Check if we have animations data
+    if (animationsData.length === 0) {
+        console.warn("No animations data loaded, displaying fallback message");
+        const message = document.createElement('div');
+        message.className = 'no-animations-message';
+        message.innerHTML = `
+            <h3>Unable to load animations</h3>
+            <p>We're having trouble loading the animation library. Please try refreshing the page or check the console for errors.</p>
+            <p>If you're the site owner, check that your JSON files are correctly formatted and accessible.</p>
+        `;
+        animationsGrid.appendChild(message);
+        return;
+    }
+    
     animationsData.forEach(animation => {
         const card = createAnimationCard(animation);
         animationsGrid.appendChild(card);
@@ -243,14 +271,22 @@ function initAnimationsGrid() {
 
 // Function to create an animation card
 function createAnimationCard(animation) {
+    // Check if animation has all required properties
+    if (!animation || !animation.id || !animation.title) {
+        console.error("Invalid animation data:", animation);
+        return document.createElement('div'); // Return empty div to avoid errors
+    }
+    
     const card = document.createElement('div');
     card.className = 'animation-card';
-    card.dataset.category = animation.category;
+    card.dataset.category = animation.category || 'unknown';
     
     let tagsHTML = '';
-    animation.tags.forEach(tag => {
-        tagsHTML += `<span class="tag">${tag}</span>`;
-    });
+    if (animation.tags && Array.isArray(animation.tags)) {
+        animation.tags.forEach(tag => {
+            tagsHTML += `<span class="tag">${tag}</span>`;
+        });
+    }
     
     card.innerHTML = `
         <div class="preview-wrapper" id="preview-${animation.id}">
